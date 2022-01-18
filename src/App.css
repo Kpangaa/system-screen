@@ -1,0 +1,4 @@
+.contenedor{
+    overscroll-behavior: contain;
+    overscroll-behavior-y: contain
+}

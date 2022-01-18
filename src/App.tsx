@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useMediaQuery } from 'react-responsive';
+import './App.css';
 
 const width: number = window.innerWidth;
 const height: number = window.innerHeight;
@@ -169,12 +170,13 @@ const App = () => {
     }
 
     return (
-        <div style={{ overscrollBehaviorY: 'contain', overscrollBehavior: 'contain'}}>
+        <div className='contenedor'>
             <canvas
                 ref={canvasRef}
                 width={width}
                 height={height}
                 style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
+                className='contenedor'
                 onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
                 onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
                 onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
