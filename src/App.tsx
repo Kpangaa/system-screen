@@ -169,7 +169,7 @@ const App = () => {
     }
 
     return (
-        <>
+        <div style={{ overscrollBehaviorY: 'contain', overscrollBehavior: 'contain'}}>
             <canvas
                 ref={canvasRef}
                 width={width}
@@ -182,7 +182,7 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
-        </>
+        </div>
     )
 }
 export default App;

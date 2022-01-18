@@ -5,12 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior: contain;
-  overscroll-behavior-y: contain;
+  /* overscroll-behavior: contain;
+  overscroll-behavior-y: contain; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  overscroll-behavior: contain;
+  /* overscroll-behavior: contain; */
 }
