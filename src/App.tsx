@@ -170,13 +170,12 @@ const App = () => {
     }
 
     return (
-        <div className='contenedor'>
             <canvas
                 ref={canvasRef}
                 width={width}
                 height={height}
-                style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
-                className='contenedor'
+                // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
+                // className='contenedor'
                 onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
                 onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
                 onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
@@ -184,7 +183,6 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
-        </div>
     )
 }
 export default App;
