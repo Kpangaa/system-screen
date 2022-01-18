@@ -53,6 +53,7 @@ const App = () => {
             animateFrameId = window.requestAnimationFrame(loop)
         }
         loop();
+        // document.addEventListener('touchmove', () => {}, {passive: false})
         return () => {
             context.clearRect(0, 0, width, height);
             window.cancelAnimationFrame(animateFrameId);
@@ -78,7 +79,7 @@ const App = () => {
                 tiles: newArray
             }
             console.log(`response`, response);
-            alert(`Acabo la prueba de pantalla`);
+            alert(`Acabo la prueba`);
         }
     }, [contador]);
 
@@ -95,7 +96,6 @@ const App = () => {
                 color: color,
                 touch: true
             };
-            // setMatrix({ ...matrix });
             setMatrix(matrix);
         }
     }
@@ -174,7 +174,7 @@ const App = () => {
                 ref={canvasRef}
                 width={width}
                 height={height}
-                style={{ zoom: 'reset' }}
+                style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
                 onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
                 onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
                 onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
