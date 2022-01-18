@@ -78,7 +78,7 @@ const App = () => {
                 tiles: newArray
             }
             console.log(`response`, response);
-            alert(`Acabo el juego en : ${timeOut} milisegundos`);
+            alert(`Acabo la prueba de pantalla`);
         }
     }, [contador]);
 
