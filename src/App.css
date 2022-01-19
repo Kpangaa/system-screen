@@ -3,7 +3,7 @@
     overscroll-behavior: contain;
 }
 
-#canvas::-webkit-full-screen #canvas {
+/* #canvas::-webkit-full-screen #canvas {
     display: none;
   }
   #canvas:-moz-full-screen #canvas {
@@ -14,4 +14,4 @@
   }
   #canvas:fullscreen #canvas {
     display: none;
-  }
+  } */
