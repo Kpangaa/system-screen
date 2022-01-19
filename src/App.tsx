@@ -77,9 +77,7 @@ const App = () => {
         }
     }, [width, height]);
 
-    // console.log(`cantidadX`, cantidadX)
-    // console.log(`cantidadY`, cantidadY)
-    console.log(contador)
+    console.log('contador', contador)
 
     useEffect(() => {
         if (contador === 0) {
