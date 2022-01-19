@@ -25,8 +25,8 @@ let startTime: number = Date.now();
     const [color, setColor] = useState<string>('red');
     const [matrix, setMatrix] = useState<any>({});
     const [contador, setContador] = useState<number>(cantidad);
-    const[cantidadX, setCantidadX] = useState<number>(Math.ceil(width / DIMENSION_SIZE));
-    const[cantidadY, setCantidadY] = useState<number>(Math.ceil(height / DIMENSION_SIZE));
+    const [cantidadX, setCantidadX] = useState<number>(0);
+    const [cantidadY, setCantidadY] = useState<number>(0);
 
     // let cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     // let cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
@@ -79,18 +79,19 @@ let startTime: number = Date.now();
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
         let animateFrameId: number = 0;
-        const loop = () => {
-            draw();
-            animateFrameId = window.requestAnimationFrame(loop)
-        }
-        loop();
-
         window.addEventListener("resize", () => {
             setWidth(window.innerWidth);
             setHeight(window.innerHeight);
             setCantidadX(Math.ceil(width / DIMENSION_SIZE));
             setCantidadY(Math.ceil(height / DIMENSION_SIZE));
+            console.log('entra varias veces aca')
         });
+        console.log('efecto lanzado')
+        const loop = () => {
+            draw();
+            animateFrameId = window.requestAnimationFrame(loop)
+        }
+        loop();
         return () => {
             context.clearRect(0, 0, width, height);
             window.cancelAnimationFrame(animateFrameId);
@@ -100,6 +101,9 @@ let startTime: number = Date.now();
             });
         }
     }, [width, height]);
+
+    console.log(`cantidadX`, cantidadX)
+    console.log(`cantidadY`, cantidadY)
 
     useEffect(() => {
         if (contador === 0) {
