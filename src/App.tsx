@@ -166,6 +166,7 @@ const App = () => {
                     }
                 }}>
                     <DesactivarPolizaAlert
+                    id='goFS'
                     desactivarPressed={()=> {
                         setShow(false);
                         setDesactivarAlert(1);
