@@ -144,6 +144,11 @@ const App = () => {
         }, false);
     }
 
+    const fullScreen = () => {
+        var container = document.getElementById("canvas");
+        container.requestFullscreen();
+    }
+
     const desactivarModalProducto = () => {
         return (
             <Modal
@@ -151,7 +156,7 @@ const App = () => {
                 onRequestClose={() => {
                     setShow(false);
                     setDesactivarAlert(1);
-                    handleClick();
+                    fullScreen();
                     draw();
                 }}
                 style={{
@@ -170,7 +175,7 @@ const App = () => {
                     desactivarPressed={()=> {
                         setShow(false);
                         setDesactivarAlert(1);
-                        handleClick();
+                        fullScreen();
                         draw();
                     }}
                     />
