@@ -82,7 +82,7 @@ const App = () => {
                 setHeight(window.innerHeight);
             });
         }
-    }, [width, height]);
+    }, [width, height, cantidadY, cantidadX]);
 
     console.log('contador', contador)
 
@@ -130,6 +130,10 @@ const App = () => {
     const renderRectangulos = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+        if(contador === cantidad){
+            console.log(`cantidadX 2`, cantidadX)
+            console.log(`cantidadY 2`, cantidadY)
+        }
         for (let x = 0; x < cantidadX; x++) {
             for (let y = 0; y < cantidadY; y++) {
                 if (matrix[`${x},${y}`]?.touch === true) {
@@ -159,16 +163,7 @@ const App = () => {
                         setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
                         setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                        setContador(cantidad);
-                        // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                        console.log('entra varias veces aca')
-                        console.log(`cantidadX 2`, cantidadX)
-                        console.log(`cantidadY 2`, cantidadY)
-                        console.log(`cantidad 2`, cantidad)
-                        console.log(`width 2`, width);
-                        console.log(`height 2`, height);
-                        console.log(`window.innerWidth 2`, window.innerWidth);
-                        console.log(`window.innerHeight 2`, window.innerHeight);
+                        setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                     });
                     draw();
                 }}
@@ -196,14 +191,6 @@ const App = () => {
                             setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                            console.log('entra varias veces aca')
-                        console.log(`cantidadX 2`, cantidadX)
-                        console.log(`cantidadY 2`, cantidadY)
-                        console.log(`cantidad 2`, cantidad)
-                        console.log(`width 2`, width);
-                        console.log(`height 2`, height);
-                        console.log(`window.innerWidth 2`, window.innerWidth);
-                        console.log(`window.innerHeight 2`, window.innerHeight);
                         });
                         draw();
                     }}
