@@ -18,7 +18,9 @@ const App = () => {
 
     const mobile: number = (width % 2 === 0) ? width / 10 : width / 9;
     const DIMENSION_SIZE: number = isTabletOrMobile ? mobile : width / 10;
-    let cantidad: number = (Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE));
+    // let cantidad: number = (Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE));
+    const [cantidad, setCantidad] = useState((Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE)));
+    console.log(`cantidad`, cantidad)
 
     const [sequence, setSequence] = useState(0);
     const [isDrawing, setIsDrawing] = useState(false);
@@ -62,8 +64,9 @@ const App = () => {
         window.addEventListener("resize", () => {
             setWidth(window.innerWidth);
             setHeight(window.innerHeight);
-            setCantidadX(Math.ceil(width / DIMENSION_SIZE));
-            setCantidadY(Math.ceil(height / DIMENSION_SIZE));
+            setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+            setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+            setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
             console.log('entra varias veces aca')
         });
         console.log('efecto lanzado')
@@ -82,8 +85,8 @@ const App = () => {
         }
     }, [width, height]);
 
-    console.log(`cantidadX`, cantidadX)
-    console.log(`cantidadY`, cantidadY)
+    // console.log(`cantidadX`, cantidadX)
+    // console.log(`cantidadY`, cantidadY)
 
     useEffect(() => {
         if (contador === 0) {
