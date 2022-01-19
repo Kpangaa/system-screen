@@ -24,6 +24,7 @@ const App = () => {
     const cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     const cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const goFS = document.getElementById("canvas");
 
     let response: Object = {};
     let pintarX: number;
@@ -131,13 +132,25 @@ const App = () => {
         }
     }
 
-    const handleClick = () => {
-        var goFS = document.getElementById("goFS");
-        goFS.addEventListener("click", function () {
-            var container = document.getElementById("canvas");
+    // const handleClick = () => {
+    //     var goFS = document.getElementById("goFS");
+    //     goFS.addEventListener("click", function () {
+    //         var container = document.getElementById("canvas");
+    //         container.requestFullscreen();
+    //     }, false);
+    // }
+
+    useEffect(() => {
+        const val = () => {
+            var container = document.getElementById("contenedor");
             container.requestFullscreen();
-        }, false);
-    }
+        }
+        goFS.addEventListener("resize",val, false);
+        
+        return () => {
+            goFS.removeEventListener("resize",val, false);
+        };
+    }, [goFS]);
 
     const onMouseDown = (event: React.MouseEvent) => {
         if (isDrawing) return;
@@ -196,7 +209,7 @@ const App = () => {
     window.scrollTo(0,1);
 
     return (
-        <div>
+        <div id="contenedor">
             <canvas
                 ref={canvasRef}
                 id="canvas"
