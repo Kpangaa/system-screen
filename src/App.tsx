@@ -147,10 +147,10 @@ const App = () => {
     const desactivarModalProducto = () => {
         return (
             <Modal
-                isOpen={desactivarAlert !== -1}
+                isOpen={desactivarAlert === -1}
                 onRequestClose={() => {
                     setShow(false);
-                    setDesactivarAlert(-1);
+                    setDesactivarAlert(1);
                     handleClick();
                     draw();
                 }}
@@ -168,7 +168,7 @@ const App = () => {
                     <DesactivarPolizaAlert
                     desactivarPressed={()=> {
                         setShow(false);
-                        setDesactivarAlert(-1);
+                        setDesactivarAlert(1);
                         handleClick();
                         draw();
                     }}
