@@ -61,15 +61,6 @@ const App = () => {
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
         let animateFrameId: number = 0;
-        window.addEventListener("resize", () => {
-            setWidth(window.innerWidth);
-            setHeight(window.innerHeight);
-            setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
-            setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
-            setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-            // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-            console.log('entra varias veces aca')
-        });
         console.log('efecto lanzado')
         const loop = () => {
             draw();
@@ -159,6 +150,15 @@ const App = () => {
                     setShow(false);
                     setDesactivarAlert(1);
                     fullScreen();
+                    window.addEventListener("resize", () => {
+                        setWidth(window.innerWidth);
+                        setHeight(window.innerHeight);
+                        setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                        setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        console.log('entra varias veces aca')
+                    });
                     draw();
                 }}
                 style={{
@@ -178,6 +178,15 @@ const App = () => {
                         setShow(false);
                         setDesactivarAlert(1);
                         fullScreen();
+                        window.addEventListener("resize", () => {
+                            setWidth(window.innerWidth);
+                            setHeight(window.innerHeight);
+                            setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                            setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                            setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                            // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                            console.log('entra varias veces aca')
+                        });
                         draw();
                     }}
                     />
