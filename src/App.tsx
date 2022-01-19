@@ -54,11 +54,11 @@ const App = () => {
     //     }
     // })
 
-    var goFS = document.getElementById("canvas");
-    goFS.addEventListener('click', function () {
-        document.body.requestFullscreen();
-        console.log(`entro aca`)
-    }, false);
+    // var goFS = document.getElementById("canvas");
+    // goFS.addEventListener('click', function () {
+    //     document.body.requestFullscreen();
+    //     console.log(`entro aca`)
+    // }, false);
 
 
     useEffect(() => {
