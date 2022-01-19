@@ -193,6 +193,8 @@ const App = () => {
         return colorRandom;
     }
 
+    window.scrollTo(0,1);
+
     return (
         <div>
             <canvas
@@ -209,7 +211,7 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
-            <button id="goFS" onClick={() => handleClick()}>Go to FullScreen</button>
+            {/* <button id="goFS" onClick={() => handleClick()}>Go to FullScreen</button> */}
         </div>
     )
 }
