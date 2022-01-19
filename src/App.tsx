@@ -159,6 +159,7 @@ const App = () => {
                         setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
                         setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        setContador(cantidad);
                         // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         console.log('entra varias veces aca')
                         console.log(`cantidadX 2`, cantidadX)
