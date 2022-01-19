@@ -4,14 +4,14 @@ import './App.css';
 import Modal from 'react-modal';
 import DesactivarPolizaAlert from "./Desactivar";
 
+const newArray = [] as any[];
+let isTabletOrMobile: boolean = false;
+let startTime: number = Date.now();
+
 const App = () => {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
-
-let isTabletOrMobile: boolean = false;
-const newArray = [] as any[];
-let startTime: number = Date.now();
     isTabletOrMobile = useMediaQuery({ query: '(max-width: 37.5em)' })
 
 
@@ -53,26 +53,6 @@ let startTime: number = Date.now();
         }
         renderRectangulos();
     }
-
-    // window.addEventListener("resize", () => {
-    //     setWidth(window.innerWidth);
-    //     setHeight(window.innerHeight);
-    // });
-
-    // screen.orientation.lock('portrait');
-
-    // document.addEventListener('fullscreenchange', () => {
-    //     if (!document.fullscreenElement) {
-    //         screen.orientation.lock('portrait');
-    //         console.log(`OLAAAA`)
-    //     }
-    // })
-
-    // var goFS = document.getElementById("canvas");
-    // goFS.addEventListener('click', function () {
-    //     document.body.requestFullscreen();
-    //     console.log(`entro aca`)
-    // }, false);
 
 
     useEffect(() => {
@@ -149,6 +129,8 @@ let startTime: number = Date.now();
     const renderRectangulos = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+        console.log(`cantidadX`, cantidadX)
+        console.log(`cantidadY`, cantidadY)
         for (let x = 0; x < cantidadX; x++) {
             for (let y = 0; y < cantidadY; y++) {
                 if (matrix[`${x},${y}`]?.touch === true) {
