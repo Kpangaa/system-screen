@@ -28,6 +28,7 @@ const App = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const goFS = document.getElementById("canvas");
     const [show, setShow] = useState<boolean>(false);
+    const [desactivarAlert, setDesactivarAlert] = useState<number>(-1);
 
     let response: Object = {};
     let pintarX: number;
@@ -146,9 +147,10 @@ const App = () => {
     const desactivarModalProducto = () => {
         return (
             <Modal
-                isOpen={show}
+                isOpen={desactivarAlert !== -1}
                 onRequestClose={() => {
                     setShow(false);
+                    setDesactivarAlert(-1);
                     handleClick();
                     draw();
                 }}
@@ -166,6 +168,7 @@ const App = () => {
                     <DesactivarPolizaAlert
                     desactivarPressed={()=> {
                         setShow(false);
+                        setDesactivarAlert(-1);
                         handleClick();
                         draw();
                     }}
@@ -228,8 +231,6 @@ const App = () => {
         return colorRandom;
     }
 
-    window.scrollTo(0,1);
-
     return (
         <div id="contenedor">
             <canvas
@@ -246,6 +247,7 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
+            {desactivarModalProducto()}
             {/* <button id="goFS" onClick={() => handleClick()}>Go to FullScreen</button> */}
         </div>
     )
