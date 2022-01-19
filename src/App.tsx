@@ -27,8 +27,10 @@ const App = () => {
     const [color, setColor] = useState<string>('red');
     const [matrix, setMatrix] = useState<any>({});
     const [contador, setContador] = useState<number>(cantidad);
-    const [cantidadX, setCantidadX] = useState<number>(0);
-    const [cantidadY, setCantidadY] = useState<number>(0);
+    const [cantidadX, setCantidadX] = useState<number>((Math.ceil(width / DIMENSION_SIZE)));
+    const [cantidadY, setCantidadY] = useState<number>((Math.ceil(height / DIMENSION_SIZE)));
+    console.log(`cantidadX`, cantidadX)
+        console.log(`cantidadY`, cantidadY)
 
     // let cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     // let cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
@@ -123,8 +125,6 @@ const App = () => {
     const renderRectangulos = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-        console.log(`cantidadX`, cantidadX)
-        console.log(`cantidadY`, cantidadY)
         for (let x = 0; x < cantidadX; x++) {
             for (let y = 0; y < cantidadY; y++) {
                 if (matrix[`${x},${y}`]?.touch === true) {
