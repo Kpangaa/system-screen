@@ -25,9 +25,11 @@ let startTime: number = Date.now();
     const [color, setColor] = useState<string>('red');
     const [matrix, setMatrix] = useState<any>({});
     const [contador, setContador] = useState<number>(cantidad);
+    const[cantidadX, setCantidadX] = useState<number>(Math.ceil(width / DIMENSION_SIZE));
+    const[cantidadY, setCantidadY] = useState<number>(Math.ceil(height / DIMENSION_SIZE));
 
-    const cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
-    const cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
+    // let cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
+    // let cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [show, setShow] = useState<boolean>(false);
     const [desactivarAlert, setDesactivarAlert] = useState<number>(-1);
@@ -49,7 +51,6 @@ let startTime: number = Date.now();
                 context.strokeRect(x + 1, y + 1, DIMENSION_SIZE, DIMENSION_SIZE);
             }
         }
-        console.log(`ENTRO ACA`)
         renderRectangulos();
     }
 
@@ -87,6 +88,8 @@ let startTime: number = Date.now();
         window.addEventListener("resize", () => {
             setWidth(window.innerWidth);
             setHeight(window.innerHeight);
+            setCantidadX(Math.ceil(width / DIMENSION_SIZE));
+            setCantidadY(Math.ceil(height / DIMENSION_SIZE));
         });
         return () => {
             context.clearRect(0, 0, width, height);
