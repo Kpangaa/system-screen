@@ -47,12 +47,12 @@ const App = () => {
 
     // screen.orientation.lock('portrait');
 
-    document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-            screen.orientation.lock('portrait');
-            console.log(`OLAAAA`)
-        }
-    })
+    // document.addEventListener('fullscreenchange', () => {
+    //     if (!document.fullscreenElement) {
+    //         screen.orientation.lock('portrait');
+    //         console.log(`OLAAAA`)
+    //     }
+    // })
 
     var goFS = document.getElementById("canvas");
     goFS.addEventListener('click', function () {
