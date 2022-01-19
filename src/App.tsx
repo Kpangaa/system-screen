@@ -130,7 +130,7 @@ const App = () => {
     const renderRectangulos = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-        if(contador === cantidad){
+        if( contador === cantidad){
             console.log(`cantidadX 2`, cantidadX)
             console.log(`cantidadY 2`, cantidadY)
         }
