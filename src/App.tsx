@@ -136,6 +136,7 @@ let startTime: number = Date.now();
                 sequence: sequence,
             }
             newArray.push(aux);
+            console.log(`newArray`, newArray)
             setContador(contador - 1)
             matrix[`${x},${y}`] = {
                 color: color,
