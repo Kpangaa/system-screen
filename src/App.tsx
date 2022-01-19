@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
+import Modal from 'react-modal';
+import DesactivarPolizaAlert from "./Desactivar";
 
 const width: number = window.innerWidth;
 const height: number = window.innerHeight;
@@ -25,6 +27,7 @@ const App = () => {
     const cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const goFS = document.getElementById("canvas");
+    const [show, setShow] = useState<boolean>(false);
 
     let response: Object = {};
     let pintarX: number;
@@ -132,25 +135,44 @@ const App = () => {
         }
     }
 
-    // const handleClick = () => {
-    //     var goFS = document.getElementById("goFS");
-    //     goFS.addEventListener("click", function () {
-    //         var container = document.getElementById("canvas");
-    //         container.requestFullscreen();
-    //     }, false);
-    // }
-
-    useEffect(() => {
-        const val = () => {
-            var container = document.getElementById("contenedor");
+    const handleClick = () => {
+        var goFS = document.getElementById("goFS");
+        goFS.addEventListener("click", function () {
+            var container = document.getElementById("canvas");
             container.requestFullscreen();
-        }
-        goFS.addEventListener("touchstart",val, false);
-        
-        return () => {
-            goFS.removeEventListener("touchstart",val, false);
-        };
-    }, [goFS]);
+        }, false);
+    }
+
+    const desactivarModalProducto = () => {
+        return (
+            <Modal
+                isOpen={show}
+                onRequestClose={() => {
+                    setShow(false);
+                    handleClick();
+                    draw();
+                }}
+                style={{
+                    content: {
+                        top: '50%', left: '50%', right: 'auto',
+                        bottom: 'auto', marginRight: '-50%',
+                        transform: 'translate(-50%, -50%)', borderRadius: '20px',
+                        width: isTabletOrMobile ? '80%' : '30%', padding: isTabletOrMobile ? '5px' : '20px',
+                    },
+                    overlay: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                    }
+                }}>
+                    <DesactivarPolizaAlert
+                    desactivarPressed={()=> {
+                        setShow(false);
+                        handleClick();
+                        draw();
+                    }}
+                    />
+            </Modal>
+        )
+    }
 
     const onMouseDown = (event: React.MouseEvent) => {
         if (isDrawing) return;
