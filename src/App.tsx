@@ -131,6 +131,14 @@ const App = () => {
         }
     }
 
+    const handleClick = () => {
+        var goFS = document.getElementById("goFS");
+        goFS.addEventListener("click", function () {
+            var container = document.getElementById("canvas");
+            container.requestFullscreen();
+        }, false);
+    }
+
     const onMouseDown = (event: React.MouseEvent) => {
         if (isDrawing) return;
         setSequence(sequence + 1);
@@ -186,20 +194,23 @@ const App = () => {
     }
 
     return (
-        <canvas
-            ref={canvasRef}
-            id="canvas"
-            width={width}
-            height={height}
-            // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
-            className='contenedor'
-            onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
-            onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
-            onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
-            onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
-            onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
-            onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
-        />
+        <div>
+            <canvas
+                ref={canvasRef}
+                id="canvas"
+                width={width}
+                height={height}
+                // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
+                className='contenedor'
+                onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
+                onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
+                onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
+                onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
+                onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
+                onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
+            />
+            <button id="goFS" onClick={() => handleClick()}>Go to FullScreen</button>
+        </div>
     )
 }
 export default App;
