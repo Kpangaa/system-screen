@@ -15,7 +15,7 @@ const App = () => {
     const DIMENSION_SIZE: number = isTabletOrMobile ? mobile : width / 10;
     let cantidad: number = (Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE));
 
-    const [ sequence, setSequence ] = useState(0);
+    const [sequence, setSequence] = useState(0);
     const [isDrawing, setIsDrawing] = useState(false);
     const [color, setColor] = useState<string>('red');
     const [matrix, setMatrix] = useState<any>({});
@@ -24,12 +24,12 @@ const App = () => {
     const cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     const cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    
+
     let response: Object = {};
     let pintarX: number;
     let pintarY: number;
     let endTime: number;
-    
+
 
     const draw = () => {
         let can = canvasRef.current as HTMLCanvasElement;
@@ -44,6 +44,22 @@ const App = () => {
         }
         renderRectangulos();
     }
+
+    // screen.orientation.lock('portrait');
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            screen.orientation.lock('portrait');
+            console.log(`OLAAAA`)
+        }
+    })
+
+    var goFS = document.getElementById("canvas");
+    goFS.addEventListener('click', function () {
+        document.body.requestFullscreen();
+        console.log(`entro aca`)
+    }, false);
+
 
     useEffect(() => {
         let can = canvasRef.current as HTMLCanvasElement;
@@ -67,7 +83,7 @@ const App = () => {
             let timeOut = endTime - startTime;
             response = {
                 checkoutId: "f2c0f1be-7240-11ec-90d6-0242ac120003",
-                screen:{
+                screen: {
                     width: width,
                     height: height
                 },
@@ -170,19 +186,20 @@ const App = () => {
     }
 
     return (
-            <canvas
-                ref={canvasRef}
-                width={width}
-                height={height}
-                // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
-                // className='contenedor'
-                onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
-                onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
-                onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
-                onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
-                onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
-                onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
-            />
+        <canvas
+            ref={canvasRef}
+            id="canvas"
+            width={width}
+            height={height}
+            // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
+            className='contenedor'
+            onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
+            onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
+            onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
+            onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
+            onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
+            onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
+        />
     )
 }
 export default App;

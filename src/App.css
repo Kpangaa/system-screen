@@ -1,4 +1,17 @@
 .contenedor{
+    overscroll-behavior-y: contain;
     overscroll-behavior: contain;
-    overscroll-behavior-y: contain
 }
+
+#canvas::-webkit-full-screen #canvas {
+    display: none;
+  }
+  #canvas:-moz-full-screen #canvas {
+    display: none;
+  }
+  #canvas:-ms-fullscreen #canvas {
+    display: none;
+  }
+  #canvas:fullscreen #canvas {
+    display: none;
+  }
