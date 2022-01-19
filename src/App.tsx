@@ -145,10 +145,10 @@ const App = () => {
             var container = document.getElementById("contenedor");
             container.requestFullscreen();
         }
-        goFS.addEventListener("resize",val, false);
+        goFS.addEventListener("touchstart",val, false);
         
         return () => {
-            goFS.removeEventListener("resize",val, false);
+            goFS.removeEventListener("touchstart",val, false);
         };
     }, [goFS]);
 
