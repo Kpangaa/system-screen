@@ -12,10 +12,10 @@ const App = () => {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
-    console.log(`width`, width);
-    console.log(`height`, height);
     console.log(`window.innerWidth`, window.innerWidth);
     console.log(`window.innerHeight`, window.innerHeight);
+    console.log(`width`, width);
+    console.log(`height`, height);
     isTabletOrMobile = useMediaQuery({ query: '(max-width: 37.5em)' })
 
 
@@ -117,7 +117,6 @@ const App = () => {
                 sequence: sequence,
             }
             newArray.push(aux);
-            console.log(`newArray`, newArray)
             setContador(contador - 1)
             matrix[`${x},${y}`] = {
                 color: color,
