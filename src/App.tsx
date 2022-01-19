@@ -12,6 +12,10 @@ const App = () => {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
+    console.log(`width`, width);
+    console.log(`height`, height);
+    console.log(`window.innerWidth`, window.innerWidth);
+    console.log(`window.innerHeight`, window.innerHeight);
     isTabletOrMobile = useMediaQuery({ query: '(max-width: 37.5em)' })
 
 
@@ -20,7 +24,6 @@ const App = () => {
     const DIMENSION_SIZE: number = isTabletOrMobile ? mobile : width / 10;
     // let cantidad: number = (Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE));
     const [cantidad, setCantidad] = useState((Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE)));
-    console.log(`cantidad`, cantidad)
 
     const [sequence, setSequence] = useState(0);
     const [isDrawing, setIsDrawing] = useState(false);
@@ -29,8 +32,10 @@ const App = () => {
     const [contador, setContador] = useState<number>(cantidad);
     const [cantidadX, setCantidadX] = useState<number>((Math.ceil(width / DIMENSION_SIZE)));
     const [cantidadY, setCantidadY] = useState<number>((Math.ceil(height / DIMENSION_SIZE)));
-    console.log(`cantidadX`, cantidadX)
-        console.log(`cantidadY`, cantidadY)
+
+                        console.log(`cantidadX`, cantidadX)
+                        console.log(`cantidadY`, cantidadY)
+                        console.log(`cantidad`, cantidad)
 
     // let cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     // let cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
@@ -156,6 +161,13 @@ const App = () => {
                         setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         console.log('entra varias veces aca')
+                        console.log(`cantidadX 2`, cantidadX)
+                        console.log(`cantidadY 2`, cantidadY)
+                        console.log(`cantidad 2`, cantidad)
+                        console.log(`width 2`, width);
+                        console.log(`height 2`, height);
+                        console.log(`window.innerWidth 2`, window.innerWidth);
+                        console.log(`window.innerHeight 2`, window.innerHeight);
                     });
                     draw();
                 }}
@@ -170,9 +182,9 @@ const App = () => {
                         backgroundColor: 'rgba(255, 255, 255, 0.5)'
                     }
                 }}>
-                    <DesactivarPolizaAlert
+                <DesactivarPolizaAlert
                     id='goFS'
-                    desactivarPressed={()=> {
+                    desactivarPressed={() => {
                         setShow(false);
                         setDesactivarAlert(1);
                         fullScreen();
@@ -187,7 +199,7 @@ const App = () => {
                         });
                         draw();
                     }}
-                    />
+                />
             </Modal>
         )
     }
