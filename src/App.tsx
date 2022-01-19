@@ -195,8 +195,15 @@ const App = () => {
                             setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
                             setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                            // setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                            setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             console.log('entra varias veces aca')
+                        console.log(`cantidadX 2`, cantidadX)
+                        console.log(`cantidadY 2`, cantidadY)
+                        console.log(`cantidad 2`, cantidad)
+                        console.log(`width 2`, width);
+                        console.log(`height 2`, height);
+                        console.log(`window.innerWidth 2`, window.innerWidth);
+                        console.log(`window.innerHeight 2`, window.innerHeight);
                         });
                         draw();
                     }}
