@@ -4,14 +4,17 @@ import './App.css';
 import Modal from 'react-modal';
 import DesactivarPolizaAlert from "./Desactivar";
 
-const width: number = window.innerWidth;
-const height: number = window.innerHeight;
+const App = () => {
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+
 let isTabletOrMobile: boolean = false;
 const newArray = [] as any[];
 let startTime: number = Date.now();
-
-const App = () => {
     isTabletOrMobile = useMediaQuery({ query: '(max-width: 37.5em)' })
+
+
 
     const mobile: number = (width % 2 === 0) ? width / 10 : width / 9;
     const DIMENSION_SIZE: number = isTabletOrMobile ? mobile : width / 10;
@@ -26,7 +29,6 @@ const App = () => {
     const cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
     const cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const goFS = document.getElementById("canvas");
     const [show, setShow] = useState<boolean>(false);
     const [desactivarAlert, setDesactivarAlert] = useState<number>(-1);
 
@@ -47,8 +49,14 @@ const App = () => {
                 context.strokeRect(x + 1, y + 1, DIMENSION_SIZE, DIMENSION_SIZE);
             }
         }
+        console.log(`ENTRO ACA`)
         renderRectangulos();
     }
+
+    // window.addEventListener("resize", () => {
+    //     setWidth(window.innerWidth);
+    //     setHeight(window.innerHeight);
+    // });
 
     // screen.orientation.lock('portrait');
 
@@ -75,10 +83,18 @@ const App = () => {
             animateFrameId = window.requestAnimationFrame(loop)
         }
         loop();
-        // document.addEventListener('touchmove', () => {}, {passive: false})
+
+        window.addEventListener("resize", () => {
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight);
+        });
         return () => {
             context.clearRect(0, 0, width, height);
             window.cancelAnimationFrame(animateFrameId);
+            window.removeEventListener("resize", () => {
+                setWidth(window.innerWidth);
+                setHeight(window.innerHeight);
+            });
         }
     }, [width, height]);
 
@@ -135,15 +151,6 @@ const App = () => {
 
         }
     }
-
-    const handleClick = () => {
-        var goFS = document.getElementById("goFS");
-        goFS.addEventListener("click", function () {
-            var container = document.getElementById("canvas");
-            container.requestFullscreen();
-        }, false);
-    }
-
     const fullScreen = () => {
         var container = document.getElementById("canvas");
         container.requestFullscreen();
@@ -254,7 +261,6 @@ const App = () => {
                 onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
             {desactivarModalProducto()}
-            {/* <button id="goFS" onClick={() => handleClick()}>Go to FullScreen</button> */}
         </div>
     )
 }
