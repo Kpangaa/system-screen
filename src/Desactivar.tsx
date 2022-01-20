@@ -1,17 +1,15 @@
 interface Props {
-    id: string;
-    desactivarPressed: any;
+    desactivarPressed: () => void;
 }
 
 
-const DesactivarPolizaAlert = ({ id, desactivarPressed}: Props) => {
+const DesactivarPolizaAlert = ({ desactivarPressed}: Props) => {
     
 
     return (
       <div className="desactivarPolizaAlert-container">
           <p className="desactivarPolizaAlert-container-text">¿Confirmás que querés desactivar tu seguro?</p>
           <button
-              id={id}
               onClick={() => {desactivarPressed()}}
                 className="desactivarPolizaAlert-container-button">
                 Desactivar

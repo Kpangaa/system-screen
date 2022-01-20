@@ -7,22 +7,19 @@ import DesactivarPolizaAlert from "./Desactivar";
 const newArray = [] as any[];
 let isTabletOrMobile: boolean = false;
 let startTime: number = Date.now();
+let response: Object = {};
+let endTime: number;
+let pintarX: number;
+let pintarY: number;
 
 const App = () => {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
-    console.log(`window.innerWidth`, window.innerWidth);
-    console.log(`window.innerHeight`, window.innerHeight);
-    console.log(`width`, width);
-    console.log(`height`, height);
     isTabletOrMobile = useMediaQuery({ query: '(max-width: 37.5em)' })
-
-
 
     const mobile: number = (width % 2 === 0) ? width / 10 : width / 9;
     const DIMENSION_SIZE: number = isTabletOrMobile ? mobile : width / 10;
-    // let cantidad: number = (Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE));
     const [cantidad, setCantidad] = useState((Math.ceil(width / DIMENSION_SIZE) * Math.ceil(height / DIMENSION_SIZE)));
 
     const [sequence, setSequence] = useState(0);
@@ -32,21 +29,8 @@ const App = () => {
     const [contador, setContador] = useState<number>(cantidad);
     const [cantidadX, setCantidadX] = useState<number>((Math.ceil(width / DIMENSION_SIZE)));
     const [cantidadY, setCantidadY] = useState<number>((Math.ceil(height / DIMENSION_SIZE)));
-
-                        console.log(`cantidadX`, cantidadX)
-                        console.log(`cantidadY`, cantidadY)
-                        console.log(`cantidad`, cantidad)
-
-    // let cantidadX: number = (Math.ceil(width / DIMENSION_SIZE));
-    // let cantidadY: number = (Math.ceil(height / DIMENSION_SIZE));
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [show, setShow] = useState<boolean>(false);
-    const [desactivarAlert, setDesactivarAlert] = useState<number>(-1);
-
-    let response: Object = {};
-    let pintarX: number;
-    let pintarY: number;
-    let endTime: number;
 
 
     const draw = () => {
@@ -68,7 +52,6 @@ const App = () => {
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
         let animateFrameId: number = 0;
-        console.log('efecto lanzado')
         const loop = () => {
             draw();
             animateFrameId = window.requestAnimationFrame(loop)
@@ -82,9 +65,8 @@ const App = () => {
                 setHeight(window.innerHeight);
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [width, height, cantidadY, cantidadX]);
-
-    console.log('contador', contador)
 
     useEffect(() => {
         if (contador === 0) {
@@ -107,8 +89,11 @@ const App = () => {
             console.log(`response`, response);
             alert(`Acabo la prueba`);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contador]);
-
+    console.log(`cantidadX`, cantidadX);
+    console.log(`cantidadY`, cantidadY);
+    console.log(`contador`, contador)
 
     const render = (x: number, y: number) => {
         if (matrix[`${x},${y}`]?.touch === undefined) {
@@ -129,10 +114,6 @@ const App = () => {
     const renderRectangulos = () => {
         const canvas = canvasRef.current as HTMLCanvasElement;
         const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-        if( contador === cantidad){
-            console.log(`cantidadX 2`, cantidadX)
-            console.log(`cantidadY 2`, cantidadY)
-        }
         for (let x = 0; x < cantidadX; x++) {
             for (let y = 0; y < cantidadY; y++) {
                 if (matrix[`${x},${y}`]?.touch === true) {
@@ -151,10 +132,9 @@ const App = () => {
     const desactivarModalProducto = () => {
         return (
             <Modal
-                isOpen={desactivarAlert === -1}
+                isOpen={show === false}
                 onRequestClose={() => {
-                    setShow(false);
-                    setDesactivarAlert(1);
+                    setShow(true);
                     fullScreen();
                     window.addEventListener("resize", () => {
                         setWidth(window.innerWidth);
@@ -164,24 +144,24 @@ const App = () => {
                         setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                     });
-                    draw();
                 }}
                 style={{
                     content: {
-                        top: '50%', left: '50%', right: 'auto',
-                        bottom: 'auto', marginRight: '-50%',
-                        transform: 'translate(-50%, -50%)', borderRadius: '20px',
-                        width: isTabletOrMobile ? '80%' : '30%', padding: isTabletOrMobile ? '5px' : '20px',
+                        top: '50%', 
+                        left: '50%', 
+                        bottom: 'auto', 
+                        transform: 'translate(-50%, -50%)', 
+                        borderRadius: '20px',
+                        width: isTabletOrMobile ? '80%' : '50%', 
+                        padding: isTabletOrMobile ? '5px' : '20px',
                     },
                     overlay: {
-                        backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                        backgroundColor: 'rgba(0, 0, 0, 0.6)'
                     }
                 }}>
                 <DesactivarPolizaAlert
-                    id='goFS'
                     desactivarPressed={() => {
-                        setShow(false);
-                        setDesactivarAlert(1);
+                        setShow(true);
                         fullScreen();
                         window.addEventListener("resize", () => {
                             setWidth(window.innerWidth);
@@ -191,7 +171,6 @@ const App = () => {
                             setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         });
-                        draw();
                     }}
                 />
             </Modal>
@@ -243,7 +222,7 @@ const App = () => {
     }
 
     const getColorRandom = (): string => {
-        let hexadecimal: string[] = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+        let hexadecimal: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
         let colorRandom: string = "#";
         for (let i = 0; i < 6; i++) {
             let posArray: number = Math.floor(Math.random() * hexadecimal.length);
