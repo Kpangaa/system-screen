@@ -50,6 +50,7 @@ const App = () => {
     const [cantidadY, setCantidadY] = useState<number>((Math.ceil(height / DIMENSION_SIZE)));
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [show, setShow] = useState<boolean>(false);
+    const rootElement = document.documentElement;
 
 
     const draw = () => {
@@ -88,9 +89,13 @@ const App = () => {
 
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
+        let refresh = 'contain';
+        rootElement.style.setProperty("--refresh", refresh);
 
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange, false);
+            let refresh = 'initial';
+            rootElement.style.setProperty("--refresh", refresh);
         }
     }, []);
 
