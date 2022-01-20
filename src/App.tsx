@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Modal from 'react-modal';
 import DesactivarPolizaAlert from "./Desactivar";
+import React from "react";
 
 const newArray = [] as any[];
 let isTabletOrMobile: boolean = false;
@@ -11,6 +12,24 @@ let response: Object = {};
 let endTime: number;
 let pintarX: number;
 let pintarY: number;
+
+declare global {
+    interface Document {
+      mozCancelFullScreen?: () => Promise<void>;
+      msExitFullscreen?: () => Promise<void>;
+      webkitExitFullscreen?: () => Promise<void>;
+      mozFullScreenElement?: Element;
+      msFullscreenElement?: Element;
+      webkitFullscreenElement?: Element;
+    }
+  
+    interface HTMLElement {
+      msRequestFullscreen?: () => Promise<void>;
+      webkitRequestFullscreen?: () => Promise<void>;
+      mozRequestFullScreen?: () => Promise<void>;
+    }
+  }
+
 
 const App = () => {
 
@@ -47,7 +66,6 @@ const App = () => {
         renderRectangulos();
     }
 
-
     useEffect(() => {
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
@@ -60,13 +78,31 @@ const App = () => {
         return () => {
             context.clearRect(0, 0, width, height);
             window.cancelAnimationFrame(animateFrameId);
-            window.removeEventListener("resize", () => {
-                setWidth(window.innerWidth);
-                setHeight(window.innerHeight);
-            });
+            // window.removeEventListener("resize", () => {
+            //     setWidth(window.innerWidth);
+            //     setHeight(window.innerHeight);
+            // });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [width, height, cantidadY, cantidadX]);
+
+    useEffect(() => {
+        document.addEventListener('visibilitychange', handleVisibilityChange, false);
+
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange, false);
+        }
+    }, []);
+
+    const handleVisibilityChange = () => {
+       if(document.visibilityState === 'visible'){
+            //   setShow(true);
+            console.log(`show`, show)
+       } else {
+                // setShow(false);
+                window.location.reload();
+       }
+    }
 
     useEffect(() => {
         if (contador === 0) {
@@ -91,9 +127,9 @@ const App = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contador]);
-    console.log(`cantidadX`, cantidadX);
-    console.log(`cantidadY`, cantidadY);
-    console.log(`contador`, contador)
+    // console.log(`cantidadX`, cantidadX);
+    // console.log(`cantidadY`, cantidadY);
+    // console.log(`contador`, contador);
 
     const render = (x: number, y: number) => {
         if (matrix[`${x},${y}`]?.touch === undefined) {
@@ -124,9 +160,18 @@ const App = () => {
 
         }
     }
+
     const fullScreen = () => {
-        var container = document.getElementById("canvas");
-        container.requestFullscreen();
+        const container: HTMLElement = document.getElementById("canvas");
+        if (container.requestFullscreen) {    //Empezando por la estándar
+            container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+            container.webkitRequestFullscreen();
+        } else if (container.mozRequestFullScreen) {    //Firefox
+            container.mozRequestFullScreen();
+        } else if (container.msRequestFullscreen) {    //Internet Explorer 11+
+            container.msRequestFullscreen();
+        }
     }
 
     const desactivarModalProducto = () => {
@@ -162,7 +207,7 @@ const App = () => {
                 <DesactivarPolizaAlert
                     desactivarPressed={() => {
                         setShow(true);
-                        fullScreen();
+                        // fullScreen();
                         window.addEventListener("resize", () => {
                             setWidth(window.innerWidth);
                             setHeight(window.innerHeight);
@@ -171,13 +216,14 @@ const App = () => {
                             setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         });
+                        console.log('entra por aca')
                     }}
                 />
             </Modal>
         )
     }
 
-    const onMouseDown = (event: React.MouseEvent) => {
+    const onMouseDown = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         if (isDrawing) return;
         setSequence(sequence + 1);
         setIsDrawing(true);
@@ -185,7 +231,7 @@ const App = () => {
         event.preventDefault();
     }
 
-    const onMouseMove = (event: React.MouseEvent) => {
+    const onMouseMove = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         if (!isDrawing) return
         pintarX = Math.floor(event.pageX / DIMENSION_SIZE);
         pintarY = Math.floor(event.pageY / DIMENSION_SIZE);
@@ -193,13 +239,13 @@ const App = () => {
         event.preventDefault();
     }
 
-    const onMouseUp = (event: React.MouseEvent) => {
+    const onMouseUp = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         if (!isDrawing) return;
         setIsDrawing(false);
         event.preventDefault();
     }
 
-    const onTouchStart = (event: React.TouchEvent) => {
+    const onTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
         if (isDrawing) return;
         setSequence(sequence + 1);
         setIsDrawing(true);
@@ -240,12 +286,12 @@ const App = () => {
                 height={height}
                 // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
                 className='contenedor'
-                onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
-                onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
-                onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
-                onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
-                onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
-                onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
+                onMouseDown={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseDown(event)}
+                onMouseMove={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseMove(event)}
+                onMouseUp={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseUp(event)}
+                onTouchMove={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchMove(event)}
+                onTouchStart={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchStart(event)}
+                onTouchEnd={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchEnd(event)}
             />
             {desactivarModalProducto()}
         </div>
