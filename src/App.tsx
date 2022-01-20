@@ -127,9 +127,10 @@ const App = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contador]);
-    // console.log(`cantidadX`, cantidadX);
-    // console.log(`cantidadY`, cantidadY);
-    // console.log(`contador`, contador);
+    
+    console.log(`cantidadX`, cantidadX);
+    console.log(`cantidadY`, cantidadY);
+    console.log(`contador`, contador);
 
     const render = (x: number, y: number) => {
         if (matrix[`${x},${y}`]?.touch === undefined) {
@@ -207,7 +208,7 @@ const App = () => {
                 <DesactivarPolizaAlert
                     desactivarPressed={() => {
                         setShow(true);
-                        // fullScreen();
+                        fullScreen();
                         window.addEventListener("resize", () => {
                             setWidth(window.innerWidth);
                             setHeight(window.innerHeight);
@@ -223,7 +224,7 @@ const App = () => {
         )
     }
 
-    const onMouseDown = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    const onMouseDown = (event: React.MouseEvent) => {
         if (isDrawing) return;
         setSequence(sequence + 1);
         setIsDrawing(true);
@@ -231,7 +232,7 @@ const App = () => {
         event.preventDefault();
     }
 
-    const onMouseMove = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    const onMouseMove = (event: React.MouseEvent) => {
         if (!isDrawing) return
         pintarX = Math.floor(event.pageX / DIMENSION_SIZE);
         pintarY = Math.floor(event.pageY / DIMENSION_SIZE);
@@ -239,13 +240,13 @@ const App = () => {
         event.preventDefault();
     }
 
-    const onMouseUp = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    const onMouseUp = (event: React.MouseEvent) => {
         if (!isDrawing) return;
         setIsDrawing(false);
         event.preventDefault();
     }
 
-    const onTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
+    const onTouchStart = (event: React.TouchEvent) => {
         if (isDrawing) return;
         setSequence(sequence + 1);
         setIsDrawing(true);
@@ -286,12 +287,12 @@ const App = () => {
                 height={height}
                 // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
                 className='contenedor'
-                onMouseDown={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseDown(event)}
-                onMouseMove={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseMove(event)}
-                onMouseUp={(event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => onMouseUp(event)}
-                onTouchMove={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchMove(event)}
-                onTouchStart={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchStart(event)}
-                onTouchEnd={(event: React.TouchEvent<HTMLCanvasElement>) => onTouchEnd(event)}
+                onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
+                onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
+                onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
+                onTouchMove={(event: React.TouchEvent) => onTouchMove(event)}
+                onTouchStart={(event: React.TouchEvent) => onTouchStart(event)}
+                onTouchEnd={(event: React.TouchEvent) => onTouchEnd(event)}
             />
             {desactivarModalProducto()}
         </div>
