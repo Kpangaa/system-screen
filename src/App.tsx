@@ -89,7 +89,14 @@ const App = () => {
 
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
-        rootElement.style.setProperty("--refresh", 'contain');
+        let OS = detectOS();
+        if(OS === "iOS" || OS === "MacOS"){
+            console.log('entro aca')
+            rootElement.style.setProperty("--position", 'fixed');
+            rootElement.style.setProperty("--overflow", 'hidden');
+        } else {
+            rootElement.style.setProperty("--refresh", 'none');
+        }
 
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange, false);
@@ -97,7 +104,7 @@ const App = () => {
         }
     }, []);
 
-    console.log(`object`, rootElement.style.getPropertyValue("--refresh"));
+    console.log(`Estado Variable`, rootElement.style.getPropertyValue("--refresh"));
 
     const handleVisibilityChange = () => {
         if (document.visibilityState !== 'visible') {

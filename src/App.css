@@ -1,3 +1,6 @@
-.contenedor{
-    overscroll-behavior: contain;
-}
+body > .mainwrapper {
+    overscroll-behavior: none;
+    position: fixed;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+  }

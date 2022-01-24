@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior: var(--refresh);
+  /* overscroll-behavior: var(--refresh);
+  position: var(--position);
+  overflow: var(--overflow); */
 }
 
 code {
@@ -15,4 +17,6 @@ code {
 
 :root{
   --refresh: initial;
+  --position: none;
+  --overflow: none;
 }
