@@ -15,20 +15,20 @@ let pintarY: number;
 
 declare global {
     interface Document {
-      mozCancelFullScreen?: () => Promise<void>;
-      msExitFullscreen?: () => Promise<void>;
-      webkitExitFullscreen?: () => Promise<void>;
-      mozFullScreenElement?: Element;
-      msFullscreenElement?: Element;
-      webkitFullscreenElement?: Element;
+        mozCancelFullScreen?: () => Promise<void>;
+        msExitFullscreen?: () => Promise<void>;
+        webkitExitFullscreen?: () => Promise<void>;
+        mozFullScreenElement?: Element;
+        msFullscreenElement?: Element;
+        webkitFullscreenElement?: Element;
     }
-  
+
     interface HTMLElement {
-      msRequestFullscreen?: () => Promise<void>;
-      webkitRequestFullscreen?: () => Promise<void>;
-      mozRequestFullScreen?: () => Promise<void>;
+        msRequestFullscreen?: () => Promise<void>;
+        webkitRequestFullscreen?: () => Promise<void>;
+        mozRequestFullScreen?: () => Promise<void>;
     }
-  }
+}
 
 
 const App = () => {
@@ -100,35 +100,33 @@ const App = () => {
     console.log(`object`, rootElement.style.getPropertyValue("--refresh"));
 
     const handleVisibilityChange = () => {
-       if(document.visibilityState === 'visible'){
-            //   setShow(true);
-            console.log(`show`, show)
-       } else {
-                // setShow(false);
-                let nav: string = getBrowserInfo();
-                if (!nav.toLocaleLowerCase().includes('safari')) {
-                    window.location.reload();
-                }
-                console.log(`nav.userAgent`, getBrowserInfo())
-                // window.location.reload();
-       }
+        if (document.visibilityState !== 'visible') {
+            let nav: string = getBrowserInfo();
+            if (!nav.toLowerCase().includes('safari')) {
+                window.location.reload();
+            }
+        } 
+            console.log(`nav.userAgent`, getBrowserInfo());
     }
 
-    var getBrowserInfo = () => {
-        var ua= navigator.userAgent, tem, 
-        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-       if(/trident/i.test(M[1])){
-            tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
-           return 'IE '+(tem[1] || '');
-       }
-       if(M[1]=== 'Chrome'){
-           tem= ua.match(/\b(OPR|Edg)\/(\d+)/);
-           if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
-       }
-       M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-       if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
-       return M.join(' ');
-   };
+    const detectOS = () => {
+        const platform = navigator.platform.toLowerCase(),
+            iosPlatforms = ['iphone', 'ipad', 'ipod', 'ipod touch'];
+
+        if (platform.includes('mac')) return 'MacOS';
+        if (iosPlatforms.includes(platform)) return 'iOS';
+        if (platform.includes('win')) return 'Windows';
+        if (/android/.test(navigator.userAgent.toLowerCase())) return 'Android';
+        if (/linux/.test(platform)) return 'Linux';
+
+        return 'unknown';
+    }
+
+    const getBrowserInfo = () => {
+        let ua = navigator.userAgent;
+        let M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        return M[1];
+    };
 
     useEffect(() => {
         if (contador === 0) {
@@ -153,7 +151,7 @@ const App = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contador]);
-    
+
     console.log(`cantidadX`, cantidadX);
     console.log(`cantidadY`, cantidadY);
     console.log(`contador`, contador);
@@ -240,12 +238,12 @@ const App = () => {
                 }}
                 style={{
                     content: {
-                        top: '50%', 
-                        left: '50%', 
-                        bottom: 'auto', 
-                        transform: 'translate(-50%, -50%)', 
+                        top: '50%',
+                        left: '50%',
+                        bottom: 'auto',
+                        transform: 'translate(-50%, -50%)',
                         borderRadius: '20px',
-                        width: isTabletOrMobile ? '80%' : '50%', 
+                        width: isTabletOrMobile ? '80%' : '50%',
                         padding: isTabletOrMobile ? '5px' : '20px',
                     },
                     overlay: {
