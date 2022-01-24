@@ -361,7 +361,6 @@ const App = () => {
                 width={width}
                 height={height}
                 // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
-                className='contenedor'
                 onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
                 onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
                 onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}

@@ -1,4 +1,4 @@
-body > .mainwrapper {
+body > .contenedor {
     overscroll-behavior: none;
     position: fixed;
     overflow: hidden;
