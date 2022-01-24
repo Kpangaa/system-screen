@@ -8,11 +8,11 @@ const DesactivarPolizaAlert = ({ desactivarPressed}: Props) => {
 
     return (
       <div className="desactivarPolizaAlert-container">
-          <p className="desactivarPolizaAlert-container-text">¿Confirmás que querés desactivar tu seguro?</p>
+          <p className="desactivarPolizaAlert-container-text">Hace click para comenzar la prueba de pantalla rota</p>
           <button
               onClick={() => {desactivarPressed()}}
                 className="desactivarPolizaAlert-container-button">
-                Desactivar
+                Comenzar
             </button>
       </div>
     );

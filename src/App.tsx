@@ -89,15 +89,15 @@ const App = () => {
 
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
-        let refresh = 'contain';
-        rootElement.style.setProperty("--refresh", refresh);
+        rootElement.style.setProperty("--refresh", 'contain');
 
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange, false);
-            let refresh = 'initial';
-            rootElement.style.setProperty("--refresh", refresh);
+            rootElement.style.setProperty("--refresh", 'initial');
         }
     }, []);
+
+    console.log(`object`, rootElement.style.getPropertyValue("--refresh"));
 
     const handleVisibilityChange = () => {
        if(document.visibilityState === 'visible'){
@@ -105,9 +105,30 @@ const App = () => {
             console.log(`show`, show)
        } else {
                 // setShow(false);
-                window.location.reload();
+                let nav: string = getBrowserInfo();
+                if (!nav.toLocaleLowerCase().includes('safari')) {
+                    window.location.reload();
+                }
+                console.log(`nav.userAgent`, getBrowserInfo())
+                // window.location.reload();
        }
     }
+
+    var getBrowserInfo = () => {
+        var ua= navigator.userAgent, tem, 
+        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+       if(/trident/i.test(M[1])){
+            tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+           return 'IE '+(tem[1] || '');
+       }
+       if(M[1]=== 'Chrome'){
+           tem= ua.match(/\b(OPR|Edg)\/(\d+)/);
+           if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+       }
+       M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+       if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+       return M.join(' ');
+   };
 
     useEffect(() => {
         if (contador === 0) {
@@ -167,15 +188,28 @@ const App = () => {
         }
     }
 
-    const fullScreen = () => {
+    const getFullScreenElement = () => {
+        console.log(document.documentElement.getElementsByTagName('canvas')[0]);
+        return document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement;
+    }
+
+
+    const toggleFullScreen = () => {
         const container: HTMLElement = document.getElementById("canvas");
         if (container.requestFullscreen) {    //Empezando por la estándar
             container.requestFullscreen();
+            console.log('Estandar')
         } else if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+            console.log(`webkit`)
             container.webkitRequestFullscreen();
-        } else if (container.mozRequestFullScreen) {    //Firefox
+        } else if (container.mozRequestFullScreen) {   //Firefox
+            console.log('mozRequestFullScreen')
             container.mozRequestFullScreen();
         } else if (container.msRequestFullscreen) {    //Internet Explorer 11+
+            console.log('msRequestFullscreen', container.msRequestFullscreen)
             container.msRequestFullscreen();
         }
     }
@@ -186,8 +220,16 @@ const App = () => {
                 isOpen={show === false}
                 onRequestClose={() => {
                     setShow(true);
-                    fullScreen();
-                    window.addEventListener("resize", () => {
+                    toggleFullScreen();
+                    // window.addEventListener("resize", () => {
+                    //     setWidth(window.innerWidth);
+                    //     setHeight(window.innerHeight);
+                    //     setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                    //     setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                    //     setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                    //     setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                    // });
+                    window.addEventListener('fullscreenchange', () => {
                         setWidth(window.innerWidth);
                         setHeight(window.innerHeight);
                         setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
@@ -213,8 +255,8 @@ const App = () => {
                 <DesactivarPolizaAlert
                     desactivarPressed={() => {
                         setShow(true);
-                        fullScreen();
-                        window.addEventListener("resize", () => {
+                        toggleFullScreen();
+                        window.addEventListener('fullscreenchange', () => {
                             setWidth(window.innerWidth);
                             setHeight(window.innerHeight);
                             setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
@@ -222,6 +264,15 @@ const App = () => {
                             setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                             setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         });
+                        console.log(`getFullScreen`, getFullScreenElement());
+                        // window.addEventListener("resize", () => {
+                        //     setWidth(window.innerWidth);
+                        //     setHeight(window.innerHeight);
+                        //     setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                        //     setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        //     setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        //     setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        // });
                         console.log('entra por aca')
                     }}
                 />
