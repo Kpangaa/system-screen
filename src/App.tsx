@@ -98,6 +98,7 @@ const App = () => {
             console.log('entro aca')
             rootElement.style.setProperty("--position", 'fixed');
             rootElement.style.setProperty("--overflow", 'hidden');
+            window.scrollTo(0, 1);
         } else {
             console.log('IOS !==')
             rootElement.style.setProperty("--refresh", 'contain');
