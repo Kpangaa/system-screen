@@ -1,6 +1,27 @@
-body > .contenedor {
-    overscroll-behavior: none;
+body > .contenedor:-moz-full-screen {
+    /* overscroll-behavior: c;
     position: fixed;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+    -webkit-overflow-scrolling: touch; */
   }
+
+body > .contenedor:-moz-full-screen {
+  /* overscroll-behavior: contain;
+  position: fixed;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; */
+}
+
+body > .contenedor:fullscreen {
+  /* overscroll-behavior: contain;
+  position: fixed;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; */
+}
+
+body > .contenedor:-webkit-full-screen {
+  /* overscroll-behavior: contain;
+  position: fixed;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; */
+}

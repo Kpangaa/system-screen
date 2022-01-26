@@ -62,6 +62,9 @@ const App = () => {
         for (let x = 0; x < width; x += DIMENSION_SIZE) {
             for (let y = 0; y < height; y += DIMENSION_SIZE) {
                 context.strokeRect(x + 1, y + 1, DIMENSION_SIZE, DIMENSION_SIZE);
+                context.font = "14px Arial";
+                context.fillStyle = "blue";
+                context.fillText(`${contador}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/3), y * DIMENSION_SIZE+ (DIMENSION_SIZE/3));
             }
         }
         renderRectangulos();
@@ -90,21 +93,27 @@ const App = () => {
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
         let OS = detectOS();
+        console.log(`OS`, OS)
         if(OS === "iOS" || OS === "MacOS"){
             console.log('entro aca')
             rootElement.style.setProperty("--position", 'fixed');
             rootElement.style.setProperty("--overflow", 'hidden');
         } else {
-            rootElement.style.setProperty("--refresh", 'none');
+            console.log('IOS !==')
+            rootElement.style.setProperty("--refresh", 'contain');
         }
 
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange, false);
             rootElement.style.setProperty("--refresh", 'initial');
+            rootElement.style.setProperty("--position", 'initial');
+            rootElement.style.setProperty("--overflow", 'initial');
         }
     }, []);
 
-    console.log(`Estado Variable`, rootElement.style.getPropertyValue("--refresh"));
+    console.log(`Estado Variable overscrollBehavior`, rootElement.style.getPropertyValue("--refresh"));
+    console.log(`Estado Variable Position`, rootElement.style.getPropertyValue("--position"));
+    console.log(`Estado Variable overflow`, rootElement.style.getPropertyValue("--overflow"));
 
     const handleVisibilityChange = () => {
         if (document.visibilityState !== 'visible') {
@@ -156,6 +165,13 @@ const App = () => {
             console.log(`response`, response);
             alert(`Acabo la prueba`);
         }
+
+        let can = canvasRef.current as HTMLCanvasElement;
+        let context = can?.getContext('2d') as CanvasRenderingContext2D;
+        context.font = "14px Arial";
+        context.fillStyle = "white";
+        context.fillText(`${contador}`, 200, 300);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contador]);
 
@@ -187,6 +203,9 @@ const App = () => {
                 if (matrix[`${x},${y}`]?.touch === true) {
                     context.fillStyle = matrix[`${x},${y}`]?.color;
                     context.fillRect(x * DIMENSION_SIZE, y * DIMENSION_SIZE, DIMENSION_SIZE - 1, DIMENSION_SIZE - 1);
+                    // context.font = "14px Arial";
+                    // context.fillStyle = "white";
+                    // context.fillText(`${contador}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/2), y * DIMENSION_SIZE+ (DIMENSION_SIZE/2));
                 }
             }
 
