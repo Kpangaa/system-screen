@@ -169,7 +169,7 @@ const App = () => {
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
         context.font = "14px Arial";
-        context.fillStyle = "white";
+        context.fillStyle = "pink";
         context.fillText(`${contador}`, 200, 300);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -203,9 +203,15 @@ const App = () => {
                 if (matrix[`${x},${y}`]?.touch === true) {
                     context.fillStyle = matrix[`${x},${y}`]?.color;
                     context.fillRect(x * DIMENSION_SIZE, y * DIMENSION_SIZE, DIMENSION_SIZE - 1, DIMENSION_SIZE - 1);
-                    // context.font = "14px Arial";
-                    // context.fillStyle = "white";
-                    // context.fillText(`${contador}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/2), y * DIMENSION_SIZE+ (DIMENSION_SIZE/2));
+                    context.font = "14px Arial";
+                    context.fillStyle = "blue";
+                    context.fillText(`${contador}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/2), y * DIMENSION_SIZE+ (DIMENSION_SIZE/2));
+                    context.font = "14px Arial";
+                    context.fillStyle = "red";
+                    context.fillText(`${cantidadX}`, x * DIMENSION_SIZE, y * DIMENSION_SIZE);
+                    context.font = "14px Arial";
+                    context.fillStyle = "green";
+                    context.fillText(`${cantidadY}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/3), y * DIMENSION_SIZE+ (DIMENSION_SIZE/3));
                 }
             }
 
@@ -379,7 +385,7 @@ const App = () => {
                 id="canvas"
                 width={width}
                 height={height}
-                // style={{ zoom: 'reset', overscrollBehaviorY: 'contain', overscrollBehavior: 'contain' }}
+                // style={{ zoom: 'reset' }}
                 onMouseDown={(event: React.MouseEvent) => onMouseDown(event)}
                 onMouseMove={(event: React.MouseEvent) => onMouseMove(event)}
                 onMouseUp={(event: React.MouseEvent) => onMouseUp(event)}
