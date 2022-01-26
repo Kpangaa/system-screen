@@ -293,30 +293,30 @@ const App = () => {
                     desactivarPressed={() => {
                         setShow(true);
                         toggleFullScreen();
-                        // window.addEventListener('fullscreenchange', () => {
-                        //     setWidth(window.innerWidth);
-                        //     setHeight(window.innerHeight);
-                        //     setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
-                        //     setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                        //     setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                        //     setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                        // });
-                        console.log(`getFullScreen`, getFullScreenElement());
-                        window.addEventListener("resize", () => {
+                        window.addEventListener('fullscreenchange', () => {
                             setWidth(window.innerWidth);
                             setHeight(window.innerHeight);
                             setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
                             setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                            setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
-                            setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
-                            // if (detectOS() === 'iOS') {
-                            //     setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)) - Math.ceil(window.innerWidth / DIMENSION_SIZE));
-                            //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)) - Math.ceil(window.innerWidth / DIMENSION_SIZE));
-                            // } else {
-                            //     setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
-                            //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
-                            // }
+                            setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                            setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         });
+                        console.log(`getFullScreen`, getFullScreenElement());
+                        // window.addEventListener("resize", () => {
+                        //     setWidth(window.innerWidth);
+                        //     setHeight(window.innerHeight);
+                        //     setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                        //     setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
+                        //     setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
+                        //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
+                        //     // if (detectOS() === 'iOS') {
+                        //     //     setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)) - Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                        //     //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)) - Math.ceil(window.innerWidth / DIMENSION_SIZE));
+                        //     // } else {
+                        //     //     setCantidad( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
+                        //     //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
+                        //     // }
+                        // });
                         console.log('entra por aca')
                     }}
                 />
