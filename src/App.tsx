@@ -237,31 +237,31 @@ const App = () => {
     const toggleFullScreen = () => {
         const container: HTMLElement = document.getElementById("canvas");
 
-        // if (container.requestFullscreen) {    //Empezando por la estándar
-        //     container.requestFullscreen();
-        //     console.log('Estandar')
-        // } 
+        if (container.requestFullscreen) {    //Empezando por la estándar
+            console.log('Estandar');
+            container.requestFullscreen();
+        } 
 
         // else 
         
-        // if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
-        //     console.log(`webkit`)
-        //     container.webkitRequestFullscreen();
-        // } 
+        if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+            console.log(`webkit`)
+            container.webkitRequestFullscreen();
+        } 
         
         // else 
         
-        // if (container.mozRequestFullScreen) {   //Firefox
-        //     console.log('mozRequestFullScreen')
-        //     container.mozRequestFullScreen();
-        // } 
+        if (container.mozRequestFullScreen) {   //Firefox
+            console.log('mozRequestFullScreen')
+            container.mozRequestFullScreen();
+        } 
         
         // else 
         
-        // if (container.msRequestFullscreen) {    //Internet Explorer 11+
-        //     console.log('msRequestFullscreen', container.msRequestFullscreen)
-        //     container.msRequestFullscreen();
-        // } 
+        if (container.msRequestFullscreen) {    //Internet Explorer 11+
+            console.log('msRequestFullscreen', container.msRequestFullscreen)
+            container.msRequestFullscreen();
+        } 
         
         // else 
         
@@ -328,7 +328,6 @@ const App = () => {
                         //     setCantidad(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         //     setContador(Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE));
                         // });
-                        console.log(`getFullScreen`, getFullScreenElement());
                         window.addEventListener("resize", () => {
                             setWidth(window.innerWidth);
                             setHeight(window.innerHeight);
@@ -344,7 +343,6 @@ const App = () => {
                             //     setContador( (Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
                             // }
                         });
-                        console.log('entra por aca')
                     }}
                 />
             </Modal>
