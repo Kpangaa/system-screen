@@ -227,8 +227,11 @@ const App = () => {
         return document.fullscreenElement ||
             document.webkitFullscreenElement ||
             document.mozFullScreenElement ||
-            document.msFullscreenElement;
+            document.msFullscreenElement ||
+            document.webkitCurrentFullScreenElement;
     }
+
+    console.log(`getFullScreenElement`, getFullScreenElement());
 
 
     const toggleFullScreen = () => {
@@ -241,10 +244,10 @@ const App = () => {
 
         // else 
         
-        if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
-            console.log(`webkit`)
-            container.webkitRequestFullscreen();
-        } 
+        // if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+        //     console.log(`webkit`)
+        //     container.webkitRequestFullscreen();
+        // } 
         
         // else 
         
@@ -253,7 +256,7 @@ const App = () => {
         //     container.mozRequestFullScreen();
         // } 
         
-        else 
+        // else 
         
         // if (container.msRequestFullscreen) {    //Internet Explorer 11+
         //     console.log('msRequestFullscreen', container.msRequestFullscreen)
@@ -262,7 +265,7 @@ const App = () => {
         
         // else 
         
-        if (container.webkitCurrentFullScreen) { //Firefox
+        if (container.webkitCurrentFullScreen) { //Safari iOS
             console.log('webkitCurrentFullScreen')
             container.webkitCurrentFullScreen();
         }
