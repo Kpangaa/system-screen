@@ -265,11 +265,11 @@ const App = () => {
         // } 
         
         // // else 
-        // container.webkitEnterFullScreen();
-        if (document.webkitCurrentFullScreenElement) { //Safari iOS
-            console.log('webkitCurrentFullScreen')
-            container.webkitEnterFullScreen();
-        }
+        container.webkitEnterFullScreen();
+        // if (document.webkitCurrentFullScreenElement) { //Safari iOS
+        //     console.log('webkitCurrentFullScreen')
+        //     container.webkitEnterFullScreen();
+        // }
     }
 
     const desactivarModalProducto = () => {
