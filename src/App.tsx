@@ -18,7 +18,6 @@ declare global {
         mozCancelFullScreen?: () => Promise<void>;
         msExitFullscreen?: () => Promise<void>;
         webkitExitFullscreen?: () => Promise<void>;
-        webkitExitCurrentFullScreen?: () => Promise<void>;
         mozFullScreenElement?: Element;
         msFullscreenElement?: Element;
         webkitFullscreenElement?: Element;
@@ -29,7 +28,6 @@ declare global {
         msRequestFullscreen?: () => Promise<void>;
         webkitRequestFullscreen?: () => Promise<void>;
         mozRequestFullScreen?: () => Promise<void>;
-        webkitCurrentFullScreen?: () => Promise<void>;
         webkitEnterFullScreen?: () => Promise<void>;
     }
 }
@@ -224,7 +222,6 @@ const App = () => {
     }
 
     const getFullScreenElement = () => {
-        console.log(document.documentElement.getElementsByTagName('canvas')[0]);
         return document.fullscreenElement ||
             document.webkitFullscreenElement ||
             document.mozFullScreenElement ||
@@ -247,7 +244,7 @@ const App = () => {
         
         // if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
         //     console.log(`webkit`)
-        //     container.webkitRequestFullscreen();
+            container.webkitRequestFullscreen();
         // } 
         
         // // else 
@@ -265,7 +262,7 @@ const App = () => {
         // } 
         
         // // else 
-        container.webkitEnterFullScreen();
+        // container.webkitEnterFullScreen();
         // if (document.webkitCurrentFullScreenElement) { //Safari iOS
         //     console.log('webkitCurrentFullScreen')
         //     container.webkitEnterFullScreen();
