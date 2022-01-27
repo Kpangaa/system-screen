@@ -12,7 +12,7 @@ const DesactivarPolizaAlert = ({ desactivarPressed}: Props) => {
           <button
               onClick={() => {desactivarPressed()}}
                 className="desactivarPolizaAlert-container-button">
-                Comenzar
+                Hernan
             </button>
       </div>
     );

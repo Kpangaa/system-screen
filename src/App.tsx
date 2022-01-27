@@ -234,19 +234,35 @@ const App = () => {
     const toggleFullScreen = () => {
         const container: HTMLElement = document.getElementById("canvas");
 
-        if (container.requestFullscreen) {    //Empezando por la estándar
-            container.requestFullscreen();
-            console.log('Estandar')
-        } else if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+        // if (container.requestFullscreen) {    //Empezando por la estándar
+        //     container.requestFullscreen();
+        //     console.log('Estandar')
+        // } 
+
+        // else 
+        
+        if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
             console.log(`webkit`)
             container.webkitRequestFullscreen();
-        } else if (container.mozRequestFullScreen) {   //Firefox
-            console.log('mozRequestFullScreen')
-            container.mozRequestFullScreen();
-        } else if (container.msRequestFullscreen) {    //Internet Explorer 11+
-            console.log('msRequestFullscreen', container.msRequestFullscreen)
-            container.msRequestFullscreen();
-        } else if (container.webkitCurrentFullScreen) { //Firefox
+        } 
+        
+        // else 
+        
+        // if (container.mozRequestFullScreen) {   //Firefox
+        //     console.log('mozRequestFullScreen')
+        //     container.mozRequestFullScreen();
+        // } 
+        
+        else 
+        
+        // if (container.msRequestFullscreen) {    //Internet Explorer 11+
+        //     console.log('msRequestFullscreen', container.msRequestFullscreen)
+        //     container.msRequestFullscreen();
+        // } 
+        
+        // else 
+        
+        if (container.webkitCurrentFullScreen) { //Firefox
             console.log('webkitCurrentFullScreen')
             container.webkitCurrentFullScreen();
         }
