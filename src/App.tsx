@@ -30,6 +30,7 @@ declare global {
         webkitRequestFullscreen?: () => Promise<void>;
         mozRequestFullScreen?: () => Promise<void>;
         webkitCurrentFullScreen?: () => Promise<void>;
+        webkitEnterFullScreen?: () => Promise<void>;
     }
 }
 
@@ -237,37 +238,37 @@ const App = () => {
     const toggleFullScreen = () => {
         const container: HTMLElement = document.getElementById("canvas");
 
-        if (container.requestFullscreen) {    //Empezando por la estándar
-            console.log('Estandar');
-            container.requestFullscreen();
-        } 
+        // if (container.requestFullscreen) {    //Empezando por la estándar
+        //     console.log('Estandar');
+        //     container.requestFullscreen();
+        // } 
 
-        // else 
+        // // else 
         
-        if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
-            console.log(`webkit`)
-            container.webkitRequestFullscreen();
-        } 
+        // if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
+        //     console.log(`webkit`)
+        //     container.webkitRequestFullscreen();
+        // } 
         
-        // else 
+        // // else 
         
-        if (container.mozRequestFullScreen) {   //Firefox
-            console.log('mozRequestFullScreen')
-            container.mozRequestFullScreen();
-        } 
+        // if (container.mozRequestFullScreen) {   //Firefox
+        //     console.log('mozRequestFullScreen')
+        //     container.mozRequestFullScreen();
+        // } 
         
-        // else 
+        // // else 
         
-        if (container.msRequestFullscreen) {    //Internet Explorer 11+
-            console.log('msRequestFullscreen', container.msRequestFullscreen)
-            container.msRequestFullscreen();
-        } 
+        // if (container.msRequestFullscreen) {    //Internet Explorer 11+
+        //     console.log('msRequestFullscreen', container.msRequestFullscreen)
+        //     container.msRequestFullscreen();
+        // } 
         
-        // else 
+        // // else 
         
         if (container.webkitCurrentFullScreen) { //Safari iOS
             console.log('webkitCurrentFullScreen')
-            container.webkitCurrentFullScreen();
+            container.webkitEnterFullScreen();
         }
     }
 
