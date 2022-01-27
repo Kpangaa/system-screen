@@ -7,7 +7,7 @@ import React from "react";
 
 const newArray = [] as any[];
 let isTabletOrMobile: boolean = false;
-let startTime: number = Date.now();
+let startTime: number = new Date().getTime();
 let response: Object = {};
 let endTime: number;
 let pintarX: number;
@@ -18,15 +18,18 @@ declare global {
         mozCancelFullScreen?: () => Promise<void>;
         msExitFullscreen?: () => Promise<void>;
         webkitExitFullscreen?: () => Promise<void>;
+        webkitExitCurrentFullScreen?: () => Promise<void>;
         mozFullScreenElement?: Element;
         msFullscreenElement?: Element;
         webkitFullscreenElement?: Element;
+        webkitCurrentFullScreenElement?: Element
     }
 
     interface HTMLElement {
         msRequestFullscreen?: () => Promise<void>;
         webkitRequestFullscreen?: () => Promise<void>;
         mozRequestFullScreen?: () => Promise<void>;
+        webkitCurrentFullScreen?: () => Promise<void>;
     }
 }
 
@@ -93,15 +96,13 @@ const App = () => {
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
         let OS = detectOS();
-        console.log(`OS`, OS)
+        console.log(`OS`, OS);
+        rootElement.style.setProperty("--refresh", 'contain');
         if(OS === "iOS" || OS === "MacOS"){
             console.log('entro aca')
             rootElement.style.setProperty("--position", 'fixed');
             rootElement.style.setProperty("--overflow", 'hidden');
             window.scrollTo(0, 1);
-        } else {
-            console.log('IOS !==')
-            rootElement.style.setProperty("--refresh", 'contain');
         }
 
         return () => {
@@ -148,7 +149,9 @@ const App = () => {
     useEffect(() => {
         if (contador === 0) {
             endTime = new Date().getTime();
-            let timeOut = endTime - startTime;
+            console.log(`startTime`, startTime);
+            console.log(`endTime`, endTime);
+            let timeOut = new Date().getTime() - startTime;
             response = {
                 checkoutId: "f2c0f1be-7240-11ec-90d6-0242ac120003",
                 screen: {
@@ -230,6 +233,7 @@ const App = () => {
 
     const toggleFullScreen = () => {
         const container: HTMLElement = document.getElementById("canvas");
+
         if (container.requestFullscreen) {    //Empezando por la estándar
             container.requestFullscreen();
             console.log('Estandar')
@@ -242,6 +246,9 @@ const App = () => {
         } else if (container.msRequestFullscreen) {    //Internet Explorer 11+
             console.log('msRequestFullscreen', container.msRequestFullscreen)
             container.msRequestFullscreen();
+        } else if (container.webkitCurrentFullScreen) { //Firefox
+            console.log('webkitCurrentFullScreen')
+            container.webkitCurrentFullScreen();
         }
     }
 
