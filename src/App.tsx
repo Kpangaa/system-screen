@@ -263,7 +263,7 @@ const App = () => {
         
         // // else 
         // container.webkitEnterFullScreen();
-        // if (document.webkitCurrentFullScreenElement) { //Safari iOS
+        // if (document.webkitEnterFullScreen) { //Safari iOS
         //     console.log('webkitCurrentFullScreen')
         //     container.webkitEnterFullScreen();
         // }
