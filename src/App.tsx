@@ -144,13 +144,19 @@ const App = () => {
         return M[1];
     };
 
-    if(detectOS() === "iOS" || detectOS() === "MacOS"){
-        window.scrollTo({
-            top: 1,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
+    // if(detectOS() === "iOS" || detectOS() === "MacOS"){
+    //     window.scrollTo({
+    //         top: 1,
+    //         left: 0,
+    //         behavior: 'smooth'
+    //     });
+    // }
+
+    window.scrollTo({
+        top: 1,
+        left: 0,
+        behavior: 'smooth'
+    });
 
     useEffect(() => {
         if (contador === 0) {
