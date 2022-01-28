@@ -90,7 +90,7 @@ const App = () => {
             // });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [width, height, cantidadY, cantidadX]);
+    }, [width, height, cantidadY, cantidadX,contador]);
 
     useEffect(() => {
         document.addEventListener('visibilitychange', handleVisibilityChange, false);
@@ -144,20 +144,6 @@ const App = () => {
         return M[1];
     };
 
-    // if(detectOS() === "iOS" || detectOS() === "MacOS"){
-    //     window.scrollTo({
-    //         top: 1,
-    //         left: 0,
-    //         behavior: 'smooth'
-    //     });
-    // }
-
-    window.scrollTo({
-        top: 1,
-        left: 0,
-        behavior: 'smooth'
-    });
-
     useEffect(() => {
         if (contador === 0) {
             endTime = new Date().getTime();
@@ -184,7 +170,7 @@ const App = () => {
 
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
-        context.font = "14px Arial";
+        context.font = "24px Arial";
         context.fillStyle = "pink";
         context.fillText(`${contador}`, 200, 300);
 
@@ -194,6 +180,8 @@ const App = () => {
     console.log(`cantidadX`, cantidadX);
     console.log(`cantidadY`, cantidadY);
     console.log(`contador`, contador);
+    console.log(`window.inner`, window.innerWidth);
+    console.log(`window.innerHeight`, window.innerHeight);
 
     const render = (x: number, y: number) => {
         if (matrix[`${x},${y}`]?.touch === undefined) {
@@ -219,15 +207,15 @@ const App = () => {
                 if (matrix[`${x},${y}`]?.touch === true) {
                     context.fillStyle = matrix[`${x},${y}`]?.color;
                     context.fillRect(x * DIMENSION_SIZE, y * DIMENSION_SIZE, DIMENSION_SIZE - 1, DIMENSION_SIZE - 1);
-                    context.font = "14px Arial";
+                    context.font = "13px Arial";
                     context.fillStyle = "blue";
                     context.fillText(`${contador}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/2), y * DIMENSION_SIZE+ (DIMENSION_SIZE/2));
-                    context.font = "14px Arial";
-                    context.fillStyle = "red";
-                    context.fillText(`${cantidadX}`, x * DIMENSION_SIZE, y * DIMENSION_SIZE);
-                    context.font = "14px Arial";
-                    context.fillStyle = "green";
-                    context.fillText(`${cantidadY}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/3), y * DIMENSION_SIZE+ (DIMENSION_SIZE/3));
+                    // context.font = "14px Arial";
+                    // context.fillStyle = "red";
+                    // context.fillText(`${cantidadX}`, x * DIMENSION_SIZE, y * DIMENSION_SIZE);
+                    // context.font = "14px Arial";
+                    // context.fillStyle = "green";
+                    // context.fillText(`${cantidadY}`, x * DIMENSION_SIZE+ (DIMENSION_SIZE/3), y * DIMENSION_SIZE+ (DIMENSION_SIZE/3));
                 }
             }
 
@@ -250,35 +238,35 @@ const App = () => {
 
         // if (container.requestFullscreen) {    //Empezando por la estándar
         //     console.log('Estandar');
-        //     container.requestFullscreen();
+            container.requestFullscreen();
         // } 
 
         // // else 
         
         // if (container.webkitRequestFullscreen) {    //Webkit (Safari, Chrome y Opera 15+)
         //     console.log(`webkit`)
-            container.webkitRequestFullscreen();
+            // container.webkitRequestFullscreen();
         // } 
         
         // // else 
         
         // if (container.mozRequestFullScreen) {   //Firefox
         //     console.log('mozRequestFullScreen')
-        //     container.mozRequestFullScreen();
+            // container.mozRequestFullScreen();
         // } 
         
         // // else 
         
         // if (container.msRequestFullscreen) {    //Internet Explorer 11+
         //     console.log('msRequestFullscreen', container.msRequestFullscreen)
-        //     container.msRequestFullscreen();
+            // container.msRequestFullscreen();
         // } 
         
         // // else 
         // container.webkitEnterFullScreen();
         // if (document.webkitEnterFullScreen) { //Safari iOS
         //     console.log('webkitCurrentFullScreen')
-        //     container.webkitEnterFullScreen();
+            // container.webkitEnterFullScreen();
         // }
     }
 
