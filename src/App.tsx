@@ -101,7 +101,6 @@ const App = () => {
             console.log('entro aca')
             rootElement.style.setProperty("--position", 'fixed');
             rootElement.style.setProperty("--overflow", 'hidden');
-            window.scrollTo(0, 1);
         }
 
         return () => {
@@ -144,6 +143,14 @@ const App = () => {
         let M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
         return M[1];
     };
+
+    if(detectOS() === "iOS" || detectOS() === "MacOS"){
+        window.scrollTo({
+            top: 1,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
 
     useEffect(() => {
         if (contador === 0) {
