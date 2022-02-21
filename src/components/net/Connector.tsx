@@ -1,0 +1,1 @@
+export const screenTestChallenge = (testId: string) => 'https://dev.wecover.co/api/screentest_challenge/' + testId;

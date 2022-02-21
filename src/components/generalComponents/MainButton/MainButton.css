@@ -1,0 +1,248 @@
+.mainButton-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    background: var(--primaryBackgroundColor);
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--thirdTextColor);
+    margin: 0;
+    border: 1px solid var(--primaryBackgroundColor);
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-container {
+            width: 100%;
+        }}
+    .mainButton-container:active {
+        background: var(--fourthSecondaryBackgroundColor);
+        border: 1px solid var(--fourthSecondaryBackgroundColor);
+        font-size: 0.8125rem;
+    }
+
+.mainButton-containerAlt1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--primaryTextColor);
+    margin: 0;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt1 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt1:active {
+        font-size: 0.8125rem;
+    }
+
+.mainButton-containerAlt2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    background: transparent;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--primaryThirdTextColor);
+    margin: 0;
+    border: 1px solid var(--primaryBackgroundColor);
+    text-align: center;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt2 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt2:active {
+        font-size: 0.8125rem;
+        border: 1px solid var(--fourthBackgroundColor);
+    }
+.mainButton-containerGoogle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    background: var(--thirdBackgroundColor);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    opacity: 0.4;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--scondaryTextColor);
+    margin: 0;
+    text-align: center;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerGoogle {
+            width: 100%;
+        }}
+    .mainButton-containerGoogle:active {
+        font-size: 0.8125rem;
+    }
+.mainButton-containerAlt3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--primaryThirdTextColor);
+    background-color: var(--thirdBackgroundColor);
+    margin: 0;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt3 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt3:active {
+        font-size: 0.8125rem;
+    }
+.mainButton-containerAlt4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--thirdTextColor);
+    background-color: transparent;
+    margin: 0;
+    border: 2px solid var(--thirdBackgroundColor);
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt4 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt4:active {
+        font-size: 0.8125rem;
+    }
+.mainButton-containerAlt5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--thirdTextColor);
+    background-color: transparent;
+    margin: 0;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt5 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt5:active {
+        font-size: 0.8125rem;
+    }
+.mainButton-containerAlt6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 16px;
+    color: var(--thirdTextColor);
+    background-color: var(--sixthBackgroundColor);
+    margin: 0;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt6 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt6:active {
+        font-size: 0.8125rem;
+    }
+.mainButton-containerAlt7 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    background: transparent;
+    opacity: 0.4;
+    border-radius: 25px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9375rem;
+    line-height: 18px;
+    color: var(--primaryTextColor);
+    margin: 0;
+    border: 1px solid var(--primarySecondaryBackgroundColor);
+    text-align: center;
+}
+    @media only screen and (max-width: 37.5em) {
+        .mainButton-containerAlt7 {
+            width: 100%;
+        }}
+    .mainButton-containerAlt7:active {
+        font-size: 0.8125rem;
+        border: 1px solid var(--fourthBackgroundColor);
+    }
+    .mainButton-containerAlt8 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 55px;
+        border-radius: 25px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.9375rem;
+        line-height: 18px;
+        color: white;
+        margin: 0;
+        text-align: center;
+    }
+        @media only screen and (max-width: 37.5em) {
+            .mainButton-containerAlt8 {
+                width: 100%;
+            }}
