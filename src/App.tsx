@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import { detectOS } from "./util/DetectOS";
 import { getBrowserInfo } from "./util/GetBrowserInfo";
@@ -73,6 +73,7 @@ const App = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rootElement = document.documentElement;
     const navigate = useNavigate();
+    const location = useLocation();
     const query = new URLSearchParams(location.search);
     const challengeId = query.get('id');
 
