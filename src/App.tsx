@@ -334,6 +334,7 @@ const App = () => {
                         setViewStatus(ViewModalSystem.PENDING);
                         // navigate(-1)
                     }}
+                    challengeId={challengeId}
                 />
             </Modal>
         )

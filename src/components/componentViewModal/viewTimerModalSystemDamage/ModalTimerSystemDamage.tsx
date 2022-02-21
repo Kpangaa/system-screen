@@ -9,9 +9,10 @@ interface Props {
   onNewTry: () => void;
   onSkipped: () => void;
   onFailed: () => void;
+  challengeId: string;
 }
 
-const ModalTimerSystemDamage = ({ onNewTry, onSkipped, onFailed }: Props) => {
+const ModalTimerSystemDamage = ({ onNewTry, onSkipped, onFailed, challengeId }: Props) => {
 
 
   return (
@@ -37,7 +38,7 @@ const ModalTimerSystemDamage = ({ onNewTry, onSkipped, onFailed }: Props) => {
         <h1 className='title-principal'>¿Tuviste algún inconveniente?</h1>
         <p className='title-secundary'>No pudimos verificar tu pantalla</p>
         <p className='parrafo-principal'>Por favor, probá una de las siguientes opciones:</p>
-
+        <p>{challengeId}</p>
 
         <div style={{ width: '90%', marginTop: 5}} >
           <MainButton
