@@ -15,8 +15,45 @@ code {
     monospace;
 }
 
-:root{
+:root {
   --refresh: initial;
   --position: initial;
   --overflow: initial;
+  --primaryBackgroundColor: #7963E0;
+  --primarySecondaryBackgroundColor: #7963E0;
+  --primaryThirdBackgroundColor: #7963E0;
+  --primaryFourthBackgroundColor: #5C7F71;
+  --scondaryBackgroundColor: #F4F4F4;
+  --thirdBackgroundColor: #FFFFFF;
+  --thirdSecondaryBackgroundColor: #FFFFFF;
+  --fourthBackgroundColor: #5741BB;
+  --fourthSecondaryBackgroundColor: #5741BB;
+  --fourthThirdBackgroundColor: #422DA4;
+  --fifthBackgroundColor: #4D43A0;
+  --sixthBackgroundColor: #FF4179;
+  --seventhBackgroundColor: #5741BB;
+  --seventhSecondaryBackgroundColor: #422DA4;
+  --eigthBackgroundColor: #6953CF;
+  --eigthSecondaryBackgroundColor: #6953CF;
+
+  --primaryGradientColor: #7963E0;
+  --secondaryGradientColor: #9C8CE3;
+  --thirdGradientColor: #C063E0;
+
+  --primaryStarColor: #5741BB;
+  --secondaryStarColor: #7963E0;
+
+  --primaryTextColor: #7963E0;
+  --primarySecondaryTextColor: #7963E0;
+  --primaryThirdTextColor: #7963E0;
+  --scondaryTextColor: #333333;
+  --thirdTextColor: #FFFFFF;
+  --thirdSecondaryTextColor: #FFFFFF;
+  --fourthTextColor: #999999;
+  --fifthTextColor: #FF4179;
+  --fifthPrimaryTextColor: #FF4179;
+  --sixthTextColor: #5741BB;
+  --sixthSecondaryTextColor: #5741BB;
+
+  --succesBackgroundColor: #27AE60;
 }

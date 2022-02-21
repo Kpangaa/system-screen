@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import { useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
 import { detectOS } from "./util/DetectOS";
 import { getBrowserInfo } from "./util/GetBrowserInfo";
@@ -11,7 +10,6 @@ import ModalSuccessFullSystemDamage from "./components/componentViewModal/viewSu
 import ModalTimerSystemDamage from "./components/componentViewModal/viewTimerModalSystemDamage/ModalTimerSystemDamage";
 import { getColorRandom } from "./util/GetColorRandom";
 import { screenTestChallenge } from "./components/net/Connector";
-// import Desactivar from "./Desactivar";
 
 function isTouchEvent(e: React.TouchEvent | React.MouseEvent): e is React.TouchEvent {
     return e && 'touches' in e;
@@ -73,8 +71,8 @@ const App = () => {
     const [cantidadY, setCantidadY] = useState<number>((Math.ceil(height / DIMENSION_SIZE)));
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rootElement = document.documentElement;
-    const navigate = useNavigate();
-    const location = useLocation();
+    // const navigate = useNavigate();
+    const location = window.location;
     const query = new URLSearchParams(location.search);
     const challengeId = query.get('id');
     console.log(`location`, location)
@@ -86,10 +84,12 @@ const App = () => {
     const [select, setSelect] = useState<number>(0);
     const [viewStatus, setViewStatus] = useState(ViewModalSystem.PENDING);
 
+
     useEffect(() => {
         let can = canvasRef.current as HTMLCanvasElement;
         let context = can?.getContext('2d') as CanvasRenderingContext2D;
         let animateFrameId: number = 0;
+        console.log('que onda')
         const loop = () => {
             drawGrid();
             animateFrameId = window.requestAnimationFrame(loop)
@@ -184,6 +184,23 @@ const App = () => {
         }
     }
 
+    const renderRectangles = () => {
+        const canvas = canvasRef.current as HTMLCanvasElement;
+        const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
+        // context.font = "18px Arial";
+        // context.fillStyle = "blue";
+        // context.fillText(`${contador}`, window.innerWidth - (DIMENSION_SIZE - 5), 0 * DIMENSION_SIZE + (DIMENSION_SIZE / 2));
+        for (let x = 0; x < cantidadX; x++) {
+            for (let y = 0; y < cantidadY; y++) {
+                if (matrix[`${x},${y}`]?.touch === true) {
+                    context.fillStyle = matrix[`${x},${y}`]?.color;
+                    context.fillRect(x * DIMENSION_SIZE, y * DIMENSION_SIZE, DIMENSION_SIZE - 1, DIMENSION_SIZE - 1);
+                }
+            }
+
+        }
+    }
+
     const handleVisibilityChange = () => {
         if (document.visibilityState !== 'visible') {
             let nav: string = getBrowserInfo();
@@ -230,23 +247,6 @@ const App = () => {
                 touch: true
             };
             setMatrix(matrix);
-        }
-    }
-
-    const renderRectangles = () => {
-        const canvas = canvasRef.current as HTMLCanvasElement;
-        const context = canvas?.getContext('2d') as CanvasRenderingContext2D;
-        // context.font = "18px Arial";
-        // context.fillStyle = "blue";
-        // context.fillText(`${contador}`, window.innerWidth - (DIMENSION_SIZE - 5), 0 * DIMENSION_SIZE + (DIMENSION_SIZE / 2));
-        for (let x = 0; x < cantidadX; x++) {
-            for (let y = 0; y < cantidadY; y++) {
-                if (matrix[`${x},${y}`]?.touch === true) {
-                    context.fillStyle = matrix[`${x},${y}`]?.color;
-                    context.fillRect(x * DIMENSION_SIZE, y * DIMENSION_SIZE, DIMENSION_SIZE - 1, DIMENSION_SIZE - 1);
-                }
-            }
-
         }
     }
 
@@ -300,7 +300,7 @@ const App = () => {
                 <ModalSuccessFullSystemDamage
                     onPassed={() => {
                         setViewStatus(ViewModalSystem.PENDING);
-                        navigate(-1)
+                        // navigate(-1)
                     }}
                 />
             </Modal>
@@ -327,12 +327,12 @@ const App = () => {
                     onSkipped={() => {
                         setSelect(1);
                         setViewStatus(ViewModalSystem.PENDING);
-                        navigate(-1)
+                        // navigate(-1)
                     }}
                     onFailed={() => {
                         setSelect(2);
                         setViewStatus(ViewModalSystem.PENDING);
-                        navigate(-1)
+                        // navigate(-1)
                     }}
                 />
             </Modal>
@@ -382,7 +382,7 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onDrawStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onDrawEnd(event)}
             />
-            {/* {confirmacionModalSystemDamage()} */}
+            {confirmacionModalSystemDamage()}
         </div>
     )
 }

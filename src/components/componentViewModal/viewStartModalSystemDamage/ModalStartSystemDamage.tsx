@@ -1,6 +1,7 @@
 import { ReactSVG } from 'react-svg';
 import './ModalStartSystemDamage.css';
 import MainButton from '../../generalComponents/MainButton/MainButton';
+// import systemDamageIcon from '../../../assets/images/svgs/systemDamageIcon.svg';
 
 interface Props {
   onStartTest: () => void;
@@ -11,6 +12,7 @@ const ModalStartSystemDamage = ({ onStartTest }: Props) => {
 
   return (
     <div>
+      <div style={{ height: 60, marginBottom: 30 ,width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>HEADER</div>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
 
         <h2 className="title-start-modal">¡Te damos la bienvenida a la verificación!</h2>
