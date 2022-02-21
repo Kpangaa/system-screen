@@ -11,7 +11,7 @@ import ModalSuccessFullSystemDamage from "./components/componentViewModal/viewSu
 import ModalTimerSystemDamage from "./components/componentViewModal/viewTimerModalSystemDamage/ModalTimerSystemDamage";
 import { getColorRandom } from "./util/GetColorRandom";
 import { screenTestChallenge } from "./components/net/Connector";
-import Desactivar from "./Desactivar";
+// import Desactivar from "./Desactivar";
 
 function isTouchEvent(e: React.TouchEvent | React.MouseEvent): e is React.TouchEvent {
     return e && 'touches' in e;
@@ -267,21 +267,7 @@ const App = () => {
                         backgroundColor: '#f4f4f4',
                     }
                 }}>
-                    <Desactivar
-                    desactivarPressed={() => {
-                        setShowStartModalSystem(true);
-                        toggleFullScreen();
-                        startTest = true;
-                        window.addEventListener("resize", () => {
-                            setWidth(window.innerWidth);
-                            setHeight(window.innerHeight);
-                            setCantidadX(Math.ceil(window.innerWidth / DIMENSION_SIZE));
-                            setCantidadY(Math.ceil(window.innerHeight / DIMENSION_SIZE));
-                            setContador((Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
-                        });
-                    }}
-                    />
-                {/* <ModalStartSystemDamage
+                <ModalStartSystemDamage
                     onStartTest={() => {
                         setShowStartModalSystem(true);
                         toggleFullScreen();
@@ -294,7 +280,7 @@ const App = () => {
                             setContador((Math.ceil(window.innerWidth / DIMENSION_SIZE) * Math.ceil(window.innerHeight / DIMENSION_SIZE)));
                         });
                     }}
-                /> */}
+                />
             </Modal>
         )
     }
@@ -396,7 +382,7 @@ const App = () => {
                 onTouchStart={(event: React.TouchEvent) => onDrawStart(event)}
                 onTouchEnd={(event: React.TouchEvent) => onDrawEnd(event)}
             />
-            {confirmacionModalSystemDamage()}
+            {/* {confirmacionModalSystemDamage()} */}
         </div>
     )
 }
