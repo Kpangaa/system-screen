@@ -1,0 +1,39 @@
+_onNavigationStateChange (webViewState) {
+   this.hide()
+}
+show () {
+  this.setState({ modalVisible: true })
+}
+
+hide () {
+  this.setState({ modalVisible: false })
+}
+
+render () {
+const { clientId, redirectUrl, scopes } = this.props
+return (
+  <Modal
+    animationType={'slide'}
+    visible={this.state.modalVisible}
+    onRequestClose={this.hide.bind(this)}
+    transparent
+  >
+    <View style={styles.modalWarp}>
+      <View style={styles.contentWarp}>
+        <WebView
+          style={[{ flex: 1 }, this.props.styles]}
+          source={{ uri: `http://google.com` }}
+          scalesPageToFit
+          startInLoadingState
+          onNavigationStateChange={this._onNavigationStateChange.bind(this)}
+          onError={this._onNavigationStateChange.bind(this)}
+        />
+        <TouchableOpacity onPress={this.hide.bind(this)} style={styles.btnStyle}>
+          <Text style={styles.closeStyle}>close</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </Modal >
+
+ )
+}

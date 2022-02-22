@@ -26,6 +26,7 @@ let response: Object = {};
 let pintarX: number;
 let pintarY: number;
 let startTest: boolean = false;
+let headers: Object = {};
 
 declare global {
     interface Document {
@@ -327,6 +328,7 @@ const App = () => {
                     onSkipped={() => {
                         setSelect(1);
                         setViewStatus(ViewModalSystem.PENDING);
+                        window.open(`www.google.com`);
                         // navigate(-1)
                     }}
                     onFailed={() => {
